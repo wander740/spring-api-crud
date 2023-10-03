@@ -43,4 +43,9 @@ public class NewsService {
         news.setCategory(category);
         return newsMapper.toDTO(newsRepository.save(news));
     }
+
+    public void delete(Long id){
+        newsRepository.delete(newsRepository.findById(id)
+            .orElseThrow());
+    }
 }

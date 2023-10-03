@@ -2,6 +2,7 @@ package com.wanderson.blog.controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,4 +39,8 @@ public class NewsController {
         return newsService.create(newsDTO);
     }
     
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id){
+        newsService.delete(id);
+    }
 }
