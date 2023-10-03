@@ -20,4 +20,8 @@ public class NewsService {
     public List<News> list(){
         return newsRepository.findAll();
     }
+
+    public News findById(Long id){
+        return newsRepository.findById(id).orElseThrow();
+    }
 }
