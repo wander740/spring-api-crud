@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wanderson.blog.model.News;
+import com.wanderson.blog.dto.NewsDTO;
 import com.wanderson.blog.service.NewsService;
 
 @RestController
@@ -21,12 +21,12 @@ public class NewsController {
     }
 
     @GetMapping
-    public List<News> list(){
+    public List<NewsDTO> list(){
         return newsService.list();
     }
 
     @GetMapping("/{id}")
-    public News findById(@PathVariable Long id){
+    public NewsDTO findById(@PathVariable Long id){
         return newsService.findById(id);
     }
 
