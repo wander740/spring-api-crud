@@ -18,20 +18,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 @RequestMapping("/api/news")
 public class NewsController {
-    
+
     private final NewsService newsService;
 
-    public NewsController(NewsService newsService){
+    public NewsController(NewsService newsService) {
         this.newsService = newsService;
     }
 
     @GetMapping
-    public List<NewsDTO> list(){
+    public List<NewsDTO> list() {
         return newsService.list();
     }
 
     @GetMapping("/{id}")
-    public NewsDTO findById(@PathVariable Long id){
+    public NewsDTO findById(@PathVariable Long id) {
         return newsService.findById(id);
     }
 
@@ -41,12 +41,12 @@ public class NewsController {
     }
     
     @PutMapping("/{id}")
-    public NewsDTO update(@PathVariable Long id, @RequestBody NewsDTO newsDTO){
+    public NewsDTO update(@PathVariable Long id, @RequestBody NewsDTO newsDTO) {
         return newsService.update(id, newsDTO);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id){
+    public void delete(@PathVariable Long id) {
         newsService.delete(id);
     }
 }

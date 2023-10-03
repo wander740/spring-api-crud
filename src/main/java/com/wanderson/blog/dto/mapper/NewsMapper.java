@@ -7,12 +7,12 @@ import com.wanderson.blog.model.News;
 
 @Component
 public class NewsMapper {
-    public NewsDTO toDTO(News news){
+    public NewsDTO toDTO(News news) {
         if(news == null) return null;
         return new NewsDTO(news.getId(), news.getTitle(), news.getText(), news.getCategory().getId());
     }
 
-    public News toEntity(NewsDTO newsDTO){
+    public News toEntity(NewsDTO newsDTO) {
         if(newsDTO == null) return null;
         News news = new News();
         if(newsDTO.id() != null) news.setId(newsDTO.id());

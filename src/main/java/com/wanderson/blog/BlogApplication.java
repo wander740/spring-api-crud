@@ -17,7 +17,7 @@ public class BlogApplication {
 	}
 
 	@Bean
-	CommandLineRunner initDatabase(CategoryRepository categoryRepository){
+	CommandLineRunner initDatabase(CategoryRepository categoryRepository) {
 		return args -> {
 			categoryRepository.deleteAll();
 

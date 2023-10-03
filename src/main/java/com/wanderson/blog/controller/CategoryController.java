@@ -12,14 +12,15 @@ import com.wanderson.blog.service.CategoryService;
 @RestController
 @RequestMapping("/api/category")
 public class CategoryController {
+
     private final CategoryService categoryService;
 
-    public CategoryController(CategoryService categoryService){
+    public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
 
     @GetMapping
-    public List<Category> list(){
+    public List<Category> list() {
         return categoryService.list();
     }
 }

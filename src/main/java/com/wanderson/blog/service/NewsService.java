@@ -13,7 +13,6 @@ import com.wanderson.blog.repository.NewsRepository;
 @Service
 public class NewsService {
     
-    
     private final NewsRepository newsRepository;
     private final NewsMapper newsMapper;
     private final CategoryService categoryService;
@@ -24,27 +23,27 @@ public class NewsService {
         this.categoryService = categoryService;
     }
 
-    public List<NewsDTO> list(){
+    public List<NewsDTO> list() {
         return newsRepository.findAll()
             .stream()
             .map(newsMapper::toDTO)
             .toList();
     }
 
-    public NewsDTO findById(Long id){
+    public NewsDTO findById(Long id) {
         return newsRepository.findById(id)
             .map(newsMapper::toDTO)
             .orElseThrow();
     }
 
-    public NewsDTO create(NewsDTO newsDTO){
+    public NewsDTO create(NewsDTO newsDTO) {
         Category category = categoryService.findById(newsDTO.category_id());
         News news = newsMapper.toEntity(newsDTO);
         news.setCategory(category);
         return newsMapper.toDTO(newsRepository.save(news));
     }
 
-    public NewsDTO update(Long id, NewsDTO newsDTO){
+    public NewsDTO update(Long id, NewsDTO newsDTO) {
         return newsRepository.findById(id)
             .map(recordFound -> {
                 Category category = categoryService.findById(newsDTO.category_id());
@@ -57,7 +56,7 @@ public class NewsService {
             }).orElseThrow();
     }
 
-    public void delete(Long id){
+    public void delete(Long id) {
         newsRepository.delete(newsRepository.findById(id)
             .orElseThrow());
     }

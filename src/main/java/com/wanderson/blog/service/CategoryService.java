@@ -12,15 +12,15 @@ public class CategoryService {
     
     private final CategoryRepository categoryRepository;
 
-    public CategoryService(CategoryRepository categoryRepository){
+    public CategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
 
-    public List<Category> list(){
+    public List<Category> list() {
         return categoryRepository.findAll();
     }
 
-    public Category findById(Long id){
+    public Category findById(Long id) {
         return categoryRepository.findById(id).orElseThrow();
     }
 }
