@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.wanderson.blog.dto.NewsDTO;
 import com.wanderson.blog.service.NewsService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @RestController
 @RequestMapping("/api/news")
@@ -30,4 +33,9 @@ public class NewsController {
         return newsService.findById(id);
     }
 
+    @PostMapping
+    public NewsDTO create(@RequestBody NewsDTO newsDTO) {
+        return newsService.create(newsDTO);
+    }
+    
 }
