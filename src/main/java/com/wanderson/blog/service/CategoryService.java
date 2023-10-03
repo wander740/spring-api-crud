@@ -1,5 +1,7 @@
 package com.wanderson.blog.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.wanderson.blog.model.Category;
@@ -12,6 +14,10 @@ public class CategoryService {
 
     public CategoryService(CategoryRepository categoryRepository){
         this.categoryRepository = categoryRepository;
+    }
+
+    public List<Category> list(){
+        return categoryRepository.findAll();
     }
 
     public Category findById(Long id){
