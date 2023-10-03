@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.wanderson.blog.dto.NewsDTO;
 import com.wanderson.blog.dto.mapper.NewsMapper;
+import com.wanderson.blog.exception.RecordNotFoundException;
 import com.wanderson.blog.model.Category;
 import com.wanderson.blog.model.News;
 import com.wanderson.blog.repository.NewsRepository;
@@ -33,7 +34,7 @@ public class NewsService {
     public NewsDTO findById(Long id) {
         return newsRepository.findById(id)
             .map(newsMapper::toDTO)
-            .orElseThrow();
+            .orElseThrow(() -> new RecordNotFoundException(id));
     }
 
     public NewsDTO create(NewsDTO newsDTO) {
@@ -53,11 +54,11 @@ public class NewsService {
                 recordFound.setCategory(category);
 
                 return newsMapper.toDTO(newsRepository.save(recordFound));
-            }).orElseThrow();
+            }).orElseThrow(() -> new RecordNotFoundException(id));
     }
 
     public void delete(Long id) {
         newsRepository.delete(newsRepository.findById(id)
-            .orElseThrow());
+            .orElseThrow(() -> new RecordNotFoundException(id)));
     }
 }

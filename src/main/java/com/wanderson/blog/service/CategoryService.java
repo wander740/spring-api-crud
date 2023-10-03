@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.wanderson.blog.exception.RecordNotFoundException;
 import com.wanderson.blog.model.Category;
 import com.wanderson.blog.repository.CategoryRepository;
 
@@ -21,6 +22,6 @@ public class CategoryService {
     }
 
     public Category findById(Long id) {
-        return categoryRepository.findById(id).orElseThrow();
+        return categoryRepository.findById(id).orElseThrow(() -> new RecordNotFoundException(id));
     }
 }
