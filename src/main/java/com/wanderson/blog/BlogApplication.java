@@ -9,7 +9,7 @@ import com.wanderson.blog.model.Category;
 import com.wanderson.blog.model.News;
 import com.wanderson.blog.repository.CategoryRepository;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.wanderson")
 public class BlogApplication {
 
 	public static void main(String[] args) {
