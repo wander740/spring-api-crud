@@ -44,6 +44,19 @@ public class NewsService {
         return newsMapper.toDTO(newsRepository.save(news));
     }
 
+    public NewsDTO update(Long id, NewsDTO newsDTO){
+        return newsRepository.findById(id)
+            .map(recordFound -> {
+                Category category = categoryService.findById(newsDTO.category_id());
+                News news = newsMapper.toEntity(newsDTO);
+                recordFound.setTitle(news.getTitle());
+                recordFound.setText(news.getText());
+                recordFound.setCategory(category);
+
+                return newsMapper.toDTO(newsRepository.save(recordFound));
+            }).orElseThrow();
+    }
+
     public void delete(Long id){
         newsRepository.delete(newsRepository.findById(id)
             .orElseThrow());

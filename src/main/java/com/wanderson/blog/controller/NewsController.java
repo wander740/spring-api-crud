@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.wanderson.blog.dto.NewsDTO;
 import com.wanderson.blog.service.NewsService;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
@@ -39,6 +40,11 @@ public class NewsController {
         return newsService.create(newsDTO);
     }
     
+    @PutMapping("/{id}")
+    public NewsDTO update(@PathVariable Long id, @RequestBody NewsDTO newsDTO){
+        return newsService.update(id, newsDTO);
+    }
+
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id){
         newsService.delete(id);
