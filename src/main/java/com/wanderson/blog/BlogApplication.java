@@ -9,6 +9,10 @@ import com.wanderson.blog.model.Category;
 import com.wanderson.blog.model.News;
 import com.wanderson.blog.repository.CategoryRepository;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.servers.Server;
+
+@OpenAPIDefinition(servers = {@Server(url = "/", description = "Defaoult Server URL")})
 @SpringBootApplication(scanBasePackages = "com.wanderson")
 public class BlogApplication {
 
