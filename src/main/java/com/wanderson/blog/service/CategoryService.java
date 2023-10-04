@@ -26,11 +26,11 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public Category create(@Valid Category category){
-        return categoryRepository.save(category);
-    }
-
     public Category findById(@NotNull @Positive Long id) {
         return categoryRepository.findById(id).orElseThrow(() -> new RecordNotFoundException(id));
+    }
+
+    public Category create(@Valid Category category){
+        return categoryRepository.save(category);
     }
 }
