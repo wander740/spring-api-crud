@@ -12,11 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.wanderson.blog.dto.NewsDTO;
 import com.wanderson.blog.service.NewsService;
+
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
+@Valid
 @RestController
 @RequestMapping("/api/news")
 public class NewsController {
@@ -33,24 +38,24 @@ public class NewsController {
     }
 
     @GetMapping("/{id}")
-    public NewsDTO findById(@PathVariable Long id) {
+    public NewsDTO findById(@PathVariable @NotNull @Positive Long id) {
         return newsService.findById(id);
     }
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public NewsDTO create(@RequestBody NewsDTO newsDTO) {
+    public NewsDTO create(@RequestBody @Valid NewsDTO newsDTO) {
         return newsService.create(newsDTO);
     }
     
     @PutMapping("/{id}")
-    public NewsDTO update(@PathVariable Long id, @RequestBody NewsDTO newsDTO) {
+    public NewsDTO update(@PathVariable @NotNull @Positive Long id, @RequestBody @Valid NewsDTO newsDTO) {
         return newsService.update(id, newsDTO);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Long id) {
+    public void delete(@PathVariable @NotNull @Positive Long id) {
         newsService.delete(id);
     }
 }

@@ -14,7 +14,6 @@ import com.wanderson.blog.model.Category;
 import com.wanderson.blog.service.CategoryService;
 
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
 
 @Valid
 @RestController
@@ -34,7 +33,7 @@ public class CategoryController {
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Category create(@RequestBody @Valid @NotNull Category category){
+    public Category create(@RequestBody @Valid Category category){
         return categoryService.create(category);
     }
 }

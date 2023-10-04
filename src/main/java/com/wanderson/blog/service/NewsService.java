@@ -11,6 +11,11 @@ import com.wanderson.blog.model.Category;
 import com.wanderson.blog.model.News;
 import com.wanderson.blog.repository.NewsRepository;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
+@Valid
 @Service
 public class NewsService {
     
@@ -31,20 +36,20 @@ public class NewsService {
             .toList();
     }
 
-    public NewsDTO findById(Long id) {
+    public NewsDTO findById(@NotNull @Positive Long id) {
         return newsRepository.findById(id)
             .map(newsMapper::toDTO)
             .orElseThrow(() -> new RecordNotFoundException(id));
     }
 
-    public NewsDTO create(NewsDTO newsDTO) {
+    public NewsDTO create(@Valid NewsDTO newsDTO) {
         Category category = categoryService.findById(newsDTO.category_id());
         News news = newsMapper.toEntity(newsDTO);
         news.setCategory(category);
         return newsMapper.toDTO(newsRepository.save(news));
     }
 
-    public NewsDTO update(Long id, NewsDTO newsDTO) {
+    public NewsDTO update(@NotNull @Positive Long id, @Valid NewsDTO newsDTO) {
         return newsRepository.findById(id)
             .map(recordFound -> {
                 Category category = categoryService.findById(newsDTO.category_id());
@@ -57,7 +62,7 @@ public class NewsService {
             }).orElseThrow(() -> new RecordNotFoundException(id));
     }
 
-    public void delete(Long id) {
+    public void delete(@NotNull @Positive Long id) {
         newsRepository.delete(newsRepository.findById(id)
             .orElseThrow(() -> new RecordNotFoundException(id)));
     }

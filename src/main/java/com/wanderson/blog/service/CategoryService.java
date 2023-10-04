@@ -26,7 +26,7 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public Category create(@Valid @NotNull Category category){
+    public Category create(@Valid Category category){
         return categoryRepository.save(category);
     }
 
