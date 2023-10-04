@@ -8,6 +8,11 @@ import com.wanderson.blog.exception.RecordNotFoundException;
 import com.wanderson.blog.model.Category;
 import com.wanderson.blog.repository.CategoryRepository;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
+@Valid
 @Service
 public class CategoryService {
     
@@ -21,11 +26,11 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public Category create(Category category){
+    public Category create(@Valid @NotNull Category category){
         return categoryRepository.save(category);
     }
 
-    public Category findById(Long id) {
+    public Category findById(@NotNull @Positive Long id) {
         return categoryRepository.findById(id).orElseThrow(() -> new RecordNotFoundException(id));
     }
 }

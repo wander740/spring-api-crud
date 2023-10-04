@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.wanderson.blog.model.Category;
 import com.wanderson.blog.service.CategoryService;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
+@Valid
 @RestController
 @RequestMapping("/api/category")
 public class CategoryController {
@@ -31,7 +34,7 @@ public class CategoryController {
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Category create(@RequestBody Category category){
+    public Category create(@RequestBody @Valid @NotNull Category category){
         return categoryService.create(category);
     }
 }
