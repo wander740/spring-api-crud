@@ -3,6 +3,7 @@ package com.wanderson.blog.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import com.wanderson.blog.dto.NewsDTO;
 import com.wanderson.blog.dto.mapper.NewsMapper;
@@ -15,7 +16,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
-@Valid
+@Validated
 @Service
 public class NewsService {
     
