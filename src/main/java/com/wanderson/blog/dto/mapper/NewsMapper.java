@@ -9,7 +9,7 @@ import com.wanderson.blog.model.News;
 public class NewsMapper {
     public NewsDTO toDTO(News news) {
         if(news == null) return null;
-        return new NewsDTO(news.getId(), news.getTitle(), news.getText(), news.getCategory().getId());
+        return new NewsDTO(news.getId(), news.getTitle(), news.getText(), news.getCategory().getId(),news.getCategory().getTitle());
     }
 
     public News toEntity(NewsDTO newsDTO) {

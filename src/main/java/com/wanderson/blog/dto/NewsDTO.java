@@ -10,7 +10,8 @@ public record NewsDTO(
     Long id,
     @NotBlank @NotNull @Length(min = 4, max = 100) String title,
     @NotBlank @NotNull @Length(min = 4, max = 5000) String text,
-    @NotNull @Positive Long category_id
+    @NotNull @Positive Long category_id,
+    String category_title
 ) {
     
 }

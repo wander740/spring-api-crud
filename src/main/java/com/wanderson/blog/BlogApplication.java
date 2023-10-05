@@ -28,6 +28,9 @@ public class BlogApplication {
 			Category category = new Category();
 			category.setTitle("Sports");
 
+			Category category1 = new Category();
+			category1.setTitle("news");
+
 			News c = new News();
 			c.setTitle("Teste um");
 			c.setText("adfasdfsadfsadfsadf");
@@ -38,11 +41,13 @@ public class BlogApplication {
 			News c1 = new News();
 			c1.setTitle("Teste dois");
 			c1.setText("adfasdfsadfsafasdfaadfsadf");
-			c1.setCategory(category);
+			c1.setCategory(category1);
 
-			category.getNews().add(c1);
+			category1.getNews().add(c1);
 
 			categoryRepository.save(category);
+
+			categoryRepository.save(category1);
 		};
 	}
 }

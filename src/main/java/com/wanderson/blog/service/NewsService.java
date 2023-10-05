@@ -67,4 +67,11 @@ public class NewsService {
         newsRepository.delete(newsRepository.findById(id)
             .orElseThrow(() -> new RecordNotFoundException(id)));
     }
+
+    public List<NewsDTO> findByTitleContaining(@NotNull String title){
+        return newsRepository.findByTitleContaining(title)
+            .stream()
+            .map(newsMapper::toDTO)
+            .toList();
+    }
 }
